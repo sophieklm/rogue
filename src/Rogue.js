@@ -1,21 +1,27 @@
 import React, { useRef, useEffect, useState } from "react";
 import InputManager from "./InputManager";
-import Player from "./Player";
 import World from "./World";
 
 const Rogue = ({ width, height, size }) => {
   const canvasRef = useRef();
-  const [player, setPlayer] = useState(new Player(1, 2, size));
   const [world, setWorld] = useState(new World(width, height, size));
 
   let inputManager = new InputManager();
 
   const handleInput = (action, data) => {
-    let newPlayer = new Player();
-    Object.assign(newPlayer, player);
-    newPlayer.move(data.x, data.y);
-    setPlayer(newPlayer);
+    let newWorld = new World();
+    Object.assign(newWorld, world);
+    newWorld.movePlayer(data.x, data.y);
+    setWorld(newWorld);
   };
+
+  useEffect(() => {
+    let newWorld = new World();
+    Object.assign(newWorld, world);
+    newWorld.createCellularMap();
+    setWorld(newWorld);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     inputManager.bindKeys();
@@ -30,7 +36,6 @@ const Rogue = ({ width, height, size }) => {
     const ctx = canvasRef.current.getContext("2d");
     ctx.clearRect(0, 0, width * size, height * size);
     world.draw(ctx);
-    player.draw(ctx);
   });
 
   return (
