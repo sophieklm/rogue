@@ -43,16 +43,24 @@ const Rogue = ({ width, height, size }) => {
   });
 
   return (
-    <canvas
-      ref={canvasRef}
-      width={width * size}
-      height={height * size}
-      style={{
-        border: "1px solid black",
-        margin: "20px 20px",
-        background: "grey",
-      }}
-    ></canvas>
+    <>
+      <canvas
+        ref={canvasRef}
+        width={width * size}
+        height={height * size}
+        style={{
+          border: "1px solid black",
+          margin: "20px 20px",
+          background: "DimGray",
+        }}
+      ></canvas>
+      <ul>
+        <h2>Inventory:</h2>
+        {world.player.inventory.map((item, index) => (
+          <li key={index}>{item.attributes.name}</li>
+        ))}
+      </ul>
+    </>
   );
 };
 

@@ -21,6 +21,10 @@ class World {
     this.entities.push(entity);
   }
 
+  remove(entity) {
+    this.entities = this.entities.filter((e) => e !== entity);
+  }
+
   moveToSpace(entity) {
     for (let x = entity.x; x < this.width; x++) {
       for (let y = entity.y; y < this.width; y++) {
@@ -52,6 +56,7 @@ class World {
     let entity = this.getEntityAtLocation(tempPlayer.x, tempPlayer.y);
     if (entity) {
       entity.action("bump", this);
+      this.player.move(dx, dy);
       return;
     }
 
