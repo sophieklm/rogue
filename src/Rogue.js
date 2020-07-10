@@ -1,10 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
 import InputManager from "./InputManager";
 import Player from "./Player";
+import World from "./World";
 
 const Rogue = ({ width, height, size }) => {
   const canvasRef = useRef();
   const [player, setPlayer] = useState(new Player(1, 2, size));
+  const [world, setWorld] = useState(new World(width, height, size));
 
   let inputManager = new InputManager();
 
@@ -27,6 +29,7 @@ const Rogue = ({ width, height, size }) => {
   useEffect(() => {
     const ctx = canvasRef.current.getContext("2d");
     ctx.clearRect(0, 0, width * size, height * size);
+    world.draw(ctx);
     player.draw(ctx);
   });
 
