@@ -23,6 +23,7 @@ const Rogue = ({ width, height, size }) => {
     newWorld.moveToSpace(world.player);
     let spawner = new Spawner(newWorld);
     spawner.spawnLoot(10);
+    spawner.spawnMonsters(5);
     setWorld(newWorld);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -58,6 +59,12 @@ const Rogue = ({ width, height, size }) => {
         <h2>Inventory:</h2>
         {world.player.inventory.map((item, index) => (
           <li key={index}>{item.attributes.name}</li>
+        ))}
+      </ul>
+      <ul>
+        <h2>History:</h2>
+        {world.history.map((item, index) => (
+          <li key={index}>{item}</li>
         ))}
       </ul>
     </>

@@ -1,4 +1,5 @@
 import Loot from "./Loot";
+import Monster from "./Monster";
 
 const lootTable = [
   {
@@ -27,6 +28,16 @@ const lootTable = [
   },
 ];
 
+const monsterTable = [
+  {
+    name: "Dragon",
+    colour: "blue",
+    ascii: "F",
+    offset: { x: 4, y: 3 },
+    health: 5,
+  },
+];
+
 class Spawner {
   constructor(world) {
     this.world = world;
@@ -47,6 +58,17 @@ class Spawner {
         getRandomInt(this.world.height),
         this.world.size,
         lootTable[getRandomInt(lootTable.length)]
+      );
+    });
+  }
+
+  spawnMonsters(spawnCount) {
+    this.spawn(spawnCount, () => {
+      return new Monster(
+        getRandomInt(this.world.width),
+        getRandomInt(this.world.height),
+        this.world.size,
+        monsterTable[getRandomInt(monsterTable.length)]
       );
     });
   }
