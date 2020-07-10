@@ -3,7 +3,7 @@ import Rogue from "./Rogue";
 
 const App = () => (
   <div className="App">
-    <h1>Rogue</h1>
+    <h1 style={{ margin: "20px 20px" }}>Rogue</h1>
     <Rogue width={40} height={40} size={16} />
   </div>
 );
