@@ -19,6 +19,7 @@ const Rogue = ({ width, height, size }) => {
     let newWorld = new World();
     Object.assign(newWorld, world);
     newWorld.createCellularMap();
+    newWorld.moveToSpace(world.player);
     setWorld(newWorld);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
