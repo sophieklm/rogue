@@ -1,21 +1,21 @@
 import React, { useRef, useEffect, useState } from "react";
 import InputManager from "./InputManager";
+import Player from "./Player";
 
 const Rogue = ({ width, height, size }) => {
   const canvasRef = useRef();
-  const [player, setPlayer] = useState({ x: 64, y: 128 });
+  const [player, setPlayer] = useState(new Player(1, 2, size));
 
   let inputManager = new InputManager();
 
   const handleInput = (action, data) => {
-    let newPlayer = { ...player };
-    newPlayer.x += data.x * size;
-    newPlayer.y += data.y * size;
+    let newPlayer = new Player();
+    Object.assign(newPlayer, player);
+    newPlayer.move(data.x, data.y);
     setPlayer(newPlayer);
   };
 
   useEffect(() => {
-    console.log("Bind input");
     inputManager.bindKeys();
     inputManager.subscribe(handleInput);
     return () => {
@@ -27,8 +27,7 @@ const Rogue = ({ width, height, size }) => {
   useEffect(() => {
     const ctx = canvasRef.current.getContext("2d");
     ctx.clearRect(0, 0, width * size, height * size);
-    ctx.fillStyle = "#000";
-    ctx.fillRect(player.x, player.y, 16, 16);
+    player.draw(ctx);
   });
 
   return (
