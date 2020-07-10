@@ -3,9 +3,8 @@ import Rogue from "./Rogue";
 
 const App = () => (
   <div className="App">
-    <h1>Title</h1>
-    <p>content</p>
-    <Rogue></Rogue>
+    <h1>Rogue</h1>
+    <Rogue width={40} height={40} size={16} />
   </div>
 );
 

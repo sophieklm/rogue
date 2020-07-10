@@ -1,9 +1,9 @@
 import React from "react";
 
-const Rogue = () => (
+const Rogue = ({ width, height, size }) => (
   <canvas
-    width="256"
-    height="256"
+    width={width * size}
+    height={height * size}
     style={{ border: "1px solid black" }}
   ></canvas>
 );
