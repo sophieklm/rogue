@@ -9,9 +9,6 @@ class Monster extends Entity {
         world.addToHistory(`${this.attributes.name} dies!`);
         world.remove(this);
       } else {
-        world.addToHistory(
-          `${this.attributes.name}'s health = ${this.attributes.health}`
-        );
         world.player.attributes.health = world.player.attributes.health - 1;
         if (world.player.attributes.health <= 0) {
           world.addToHistory("You have died!");
@@ -20,6 +17,9 @@ class Monster extends Entity {
             `You have ${world.player.attributes.health} health`
           );
         }
+        world.addToHistory(
+          `${this.attributes.name}'s health = ${this.attributes.health}`
+        );
       }
     }
   }
