@@ -54,8 +54,8 @@ class Spawner {
   spawnLoot(spawnCount) {
     this.spawn(spawnCount, () => {
       return new Loot(
-        getRandomInt(this.world.width),
-        getRandomInt(this.world.height),
+        getRandomInt(this.world.width - 1),
+        getRandomInt(this.world.height - 1),
         this.world.size,
         lootTable[getRandomInt(lootTable.length)]
       );
@@ -65,8 +65,8 @@ class Spawner {
   spawnMonsters(spawnCount) {
     this.spawn(spawnCount, () => {
       return new Monster(
-        getRandomInt(this.world.width),
-        getRandomInt(this.world.height),
+        getRandomInt(this.world.width - 1),
+        getRandomInt(this.world.height - 1),
         this.world.size,
         monsterTable[getRandomInt(monsterTable.length)]
       );

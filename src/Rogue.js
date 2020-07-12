@@ -61,7 +61,7 @@ const Rogue = ({ width, height, size }) => {
           <li key={index}>{item.attributes.name}</li>
         ))}
       </ul>
-      <ul>
+      <ul style={{ "list-style": "none" }}>
         <h2>History:</h2>
         {world.history.map((item, index) => (
           <li key={index}>{item}</li>
