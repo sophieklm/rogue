@@ -24,6 +24,7 @@ const Rogue = ({ width, height, size }) => {
     let spawner = new Spawner(newWorld);
     spawner.spawnLoot(10);
     spawner.spawnMonsters(5);
+    spawner.spawnStairs(1);
     setWorld(newWorld);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -61,7 +62,7 @@ const Rogue = ({ width, height, size }) => {
           <li key={index}>{item.attributes.name}</li>
         ))}
       </ul>
-      <ul style={{ "list-style": "none" }}>
+      <ul style={{ listStyle: "none" }}>
         <h2>History:</h2>
         {world.history.map((item, index) => (
           <li key={index}>{item}</li>

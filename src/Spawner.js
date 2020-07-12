@@ -1,5 +1,6 @@
 import Loot from "./Loot";
 import Monster from "./Monster";
+import Stairs from "./Stairs";
 
 const lootTable = [
   {
@@ -32,9 +33,23 @@ const monsterTable = [
   {
     name: "Dragon",
     colour: "blue",
-    ascii: "F",
-    offset: { x: 4, y: 3 },
+    ascii: "D",
+    offset: { x: 3, y: 3 },
     health: 5,
+  },
+  {
+    name: "Ogre",
+    colour: "purple",
+    ascii: "O",
+    offset: { x: 1, y: 3 },
+    health: 4,
+  },
+  {
+    name: "Kobold",
+    colour: "darkgreen",
+    ascii: "K",
+    offset: { x: 3, y: 3 },
+    health: 3,
   },
 ];
 
@@ -71,6 +86,16 @@ class Spawner {
         monsterTable[getRandomInt(monsterTable.length)]
       );
     });
+  }
+
+  spawnStairs() {
+    let stairs = new Stairs(
+      this.world.width - 10,
+      this.world.height - 10,
+      this.world.size
+    );
+    this.world.add(stairs);
+    this.world.moveToSpace(stairs);
   }
 }
 
